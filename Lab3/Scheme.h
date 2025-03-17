@@ -4,6 +4,9 @@
 #include <vector>
 #include <iostream>
 
+#include "Datalog.h"
+#include "Predicate.h"
+
 using namespace std;
 
 

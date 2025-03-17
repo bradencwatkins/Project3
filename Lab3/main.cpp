@@ -5,8 +5,9 @@ using namespace std;
 #include "Token.h"
 #include "Parser.h"
 #include "Scanner.h"
-#include "Database.h"
+#include "Databas.h"
 #include "Interpreter.h"
+#include "Databas.h"
 #include <vector>
 
 string fileToString(const string& filename) {
@@ -19,6 +20,9 @@ string fileToString(const string& filename) {
 
 
 int main(int argc, char* argv[]) {
+    Datalog datalog;
+    Databas database;
+
     string fileText = fileToString(argv[1]);
 
     Scanner s(fileText);
@@ -44,10 +48,10 @@ int main(int argc, char* argv[]) {
 
     }
     tokenList.push_back(t);
-    cout << t.toString() << endl;
-     for (int j = 0; j < tokenList.size(); j++) {
-         cout << (tokenList.at(j)).toString() << endl;
-     }
+    // cout << t.toString() << endl;
+    //  for (int j = 0; j < tokenList.size(); j++) {
+    //      cout << (tokenList.at(j)).toString() << endl;
+    //  }
 
     Parser p = Parser(tokenList);
     p.datalogProgram();
@@ -58,5 +62,12 @@ int main(int argc, char* argv[]) {
     p.getDatalog().printQueries();
     p.getDatalog().printDomains();
 
+    Databas db;
+    db.setNames(p.getDatalog());
+    db.setFacts(p.getDatalog());
+    db.printRelations();
+
+    Interpreter interpreter(db, datalog);
+    interpreter.evaluateQueries();
 
 }

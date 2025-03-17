@@ -9,8 +9,6 @@ using namespace std;
 #include "Database.h"
 
 class Datalog {
-
-
 private:
     vector<Predicate> scheme;
     vector<Predicate> facts;
@@ -70,6 +68,18 @@ public:
             names.push_back(pred.getName());
         }
         return names;
+    }
+
+    const vector<Predicate>& getSchemes() {
+        return scheme;
+    }
+
+    const vector<Predicate>& getFacts() const {
+        return facts;
+    }
+
+    const vector<Predicate>& getQueries() const {
+        return queries;
     }
 
     //printing the schemes, first predicate, then parameters

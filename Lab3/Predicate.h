@@ -35,5 +35,13 @@ public:
         return parameters;
     }
 
+    vector<string> getParametersAsString() const {
+        vector<string> list;
+        for (const auto& param : parameters) {
+            list.push_back(param.getValue());
+        }
+        return list;
+    }
+
 
 };
